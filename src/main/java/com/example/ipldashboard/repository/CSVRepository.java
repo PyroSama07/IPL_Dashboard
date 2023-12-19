@@ -31,7 +31,7 @@ public interface CSVRepository extends CrudRepository<Match, Integer> {
             nativeQuery = true)
     int getallmatches(@Param("team") String team);
 
-    @Query(value = "SELECT toss_winner,COUNT(toss_winner)  from matchinfo group by toss_winner order by count(toss_winner) desc",
+    @Query(value = "SELECT toss_winner from matchinfo group by toss_winner order by count(toss_winner) desc limit 1",
             nativeQuery = true)
     List<Object[]> gettossdecisions();
 

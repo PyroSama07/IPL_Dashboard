@@ -32,7 +32,7 @@ public class DashBoardController {
     }
 
     @GetMapping("/teamdetails")
-    public void getTeamDetails(@RequestParam String team){
+    public String getTeamDetails(@RequestParam String team){
         List<Match> matches = csvRepository.getlast4teammatch(team);
         int wins = csvRepository.getwins(team);
         int allmatches = csvRepository.getallmatches(team);
@@ -40,7 +40,7 @@ public class DashBoardController {
         log.info(matches.toString());
         log.info(String.valueOf(wins)+"/"+losses);
         log.info(String.valueOf(allmatches));
-        return;
+        return matches.toString();
     }
 
     @GetMapping("/tosswinners")

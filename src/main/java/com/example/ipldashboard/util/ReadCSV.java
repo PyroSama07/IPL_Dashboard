@@ -1,27 +1,32 @@
 package com.example.ipldashboard.util;
 
 import com.example.ipldashboard.models.Match;
-import com.fasterxml.jackson.annotation.JsonFormat;
+import com.example.ipldashboard.repository.CSVRepository;
 import com.opencsv.CSVReader;
 import com.opencsv.exceptions.CsvValidationException;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.context.annotation.Bean;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.lang.reflect.Field;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 @Slf4j
 @Service
 public class ReadCSV {
+
+    @Autowired
+    public CSVRepository csvRepository;
+
+    @Value("${matchcsvpath}")
+    public String matchespath;
+
     public List<Match> readCSV(String path) throws FileNotFoundException {
         List<Match> matches = new ArrayList<>();
         String[] data;
@@ -65,6 +70,13 @@ public class ReadCSV {
             throw new RuntimeException(e);
         }
         return matches;
+    }
+
+    public void save() throws FileNotFoundException {
+        List<Match> matches = readCSV(matchespath);
+        for (Match match:matches) {
+            csvRepository.save(match);
+        }
     }
 
 //    public static void main(String[] args) throws FileNotFoundException {

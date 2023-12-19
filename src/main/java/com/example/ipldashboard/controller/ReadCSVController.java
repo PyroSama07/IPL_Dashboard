@@ -16,6 +16,8 @@ import java.util.*;
 @Slf4j
 public class ReadCSVController {
 
+//    @Autowired
+//    public SaveCSV save;
     @Autowired
     public ReadCSV read;
     @Autowired
@@ -30,13 +32,10 @@ public class ReadCSVController {
 
     @GetMapping("/savedb")
     public String saveToDB() throws FileNotFoundException {
-        List<Match> matches = read.readCSV(matchespath);
-        for (Match match:matches){
-            csvRepository.save(match);
-        }
-        log.info("Saved into db");
+        read.save();
         return "Saved";
     }
+
 
 //    @PostMapping("/matches")
 //    public List<Match> matchListBetweenTwoTeams(@RequestParam(required = true) String team1,
