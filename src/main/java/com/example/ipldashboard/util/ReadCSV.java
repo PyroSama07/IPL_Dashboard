@@ -1,7 +1,7 @@
 package com.example.ipldashboard.util;
 
 import com.example.ipldashboard.models.Match;
-import com.example.ipldashboard.repository.CSVRepository;
+import com.example.ipldashboard.repository.MatchRepository;
 import com.opencsv.CSVReader;
 import com.opencsv.exceptions.CsvValidationException;
 import lombok.extern.slf4j.Slf4j;
@@ -22,7 +22,7 @@ import java.util.List;
 public class ReadCSV {
 
     @Autowired
-    public CSVRepository csvRepository;
+    public MatchRepository matchRepository;
 
     @Value("${matchcsvpath}")
     public String matchespath;
@@ -75,7 +75,7 @@ public class ReadCSV {
     public void save() throws FileNotFoundException {
         List<Match> matches = readCSV(matchespath);
         for (Match match:matches) {
-            csvRepository.save(match);
+            matchRepository.save(match);
         }
     }
 

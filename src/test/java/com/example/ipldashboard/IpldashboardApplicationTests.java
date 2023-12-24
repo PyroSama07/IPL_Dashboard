@@ -1,6 +1,6 @@
 package com.example.ipldashboard;
 
-import com.example.ipldashboard.repository.CSVRepository;
+import com.example.ipldashboard.repository.MatchRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -10,7 +10,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 class IpldashboardApplicationTests {
 
 	@Autowired
-	private CSVRepository csvRepository;
+	private MatchRepository csvRepository;
 	@Test
 	void contextLoads() {
 	}

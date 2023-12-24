@@ -15,7 +15,7 @@ import java.util.List;
 @ToString
 
 @Entity
-@Table(name="matchinfo")
+@Table(name="match_info")
 public class Match {
     @Id
     int ID;

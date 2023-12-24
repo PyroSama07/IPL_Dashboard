@@ -1,8 +1,10 @@
 package com.example.ipldashboard.controller;
 
 import com.example.ipldashboard.models.Match;
-import com.example.ipldashboard.repository.CSVRepository;
+import com.example.ipldashboard.repository.MatchRepository;
+import com.example.ipldashboard.repository.TeamRepository;
 import com.example.ipldashboard.util.ReadCSV;
+import com.example.ipldashboard.util.TeamUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -21,7 +23,11 @@ public class ReadCSVController {
     @Autowired
     public ReadCSV read;
     @Autowired
-    public CSVRepository csvRepository;
+    public MatchRepository matchRepository;
+
+    @Autowired
+    public TeamUtils teamUtils;
+
     @Value("${matchcsvpath}")
     public String matchespath;
 
@@ -36,7 +42,10 @@ public class ReadCSVController {
         return "Saved";
     }
 
-
+    @GetMapping("/teamNames")
+    public void teamNames(){
+        teamUtils.save();
+    }
 //    @PostMapping("/matches")
 //    public List<Match> matchListBetweenTwoTeams(@RequestParam(required = true) String team1,
 //                            @RequestParam(required = true) String team2){

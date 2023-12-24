@@ -1,6 +1,8 @@
 package com.example.ipldashboard;
 
+import com.example.ipldashboard.repository.TeamRepository;
 import com.example.ipldashboard.util.ReadCSV;
+import com.example.ipldashboard.util.TeamUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -11,10 +13,14 @@ import java.io.FileNotFoundException;
 public class IpldashboardApplication {
 
 	@Autowired
-	ReadCSV readSCV;
-	public IpldashboardApplication(ReadCSV readCSV) throws FileNotFoundException {
-		this.readSCV = readCSV;
-		readSCV.save();
+	ReadCSV readCSV;
+	TeamUtils teamUtils;
+	public IpldashboardApplication(ReadCSV readCSV,
+								   TeamUtils teamUtils) throws FileNotFoundException {
+		this.readCSV = readCSV;
+		this.teamUtils = teamUtils;
+		readCSV.save();
+		teamUtils.save();
 	}
 
 	public static void main(String[] args) throws FileNotFoundException {
