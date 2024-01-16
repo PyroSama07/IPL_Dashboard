@@ -1,5 +1,5 @@
 import {React, useEffect, useState } from 'react';
-import { useSearchParams} from 'react-router-dom';
+import { Link , useSearchParams} from 'react-router-dom';
 import { MatchDetailComponent } from '../components/MatchDetailComponent';
 import { YearSelector } from '../components/YearSelector';
 
@@ -44,7 +44,9 @@ export const MatchPage = () =>{
                 <YearSelector teamName={teamName} />
             </div>
             <div>
-            <h1 className="page-heading">{teamName} matches in {year}</h1>
+            <h1 className="page-heading"><Link to={{pathname: '/dashboard/teamDetails',
+                                          search: `?teamName=${teamName}`}}>
+                                          {teamName}</Link> matches in {year}</h1>
                 {match.slice(0).map(latest_match => <MatchDetailComponent match={latest_match} teamName = {teamName}/>)}
             </div>
         </div>

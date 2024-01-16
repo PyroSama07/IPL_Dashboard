@@ -11,21 +11,9 @@ import java.util.*;
 @Repository
 public interface MatchRepository extends CrudRepository<Match, Integer> {
 
-    @Query(value = "select * from match_info where team1 in :teams and team2 in :teams",
-            nativeQuery = true)
-    List<Match> getmatchinfo(@Param("teams") List<String> teams);
-
-    @Query(value = "select winning_team from match_info where match_number = 'Final' and season =:season",
-            nativeQuery = true)
-    String getseasonwinner(@Param("season") String season);
-
     @Query(value = "select * from match_info where team1=:team or team2=:team order by date desc limit 4",
             nativeQuery = true)
     List<Match> getlast4teammatch(@Param("team") String team);
-
-    @Query(value = "SELECT toss_winner from match_info group by toss_winner order by count(toss_winner) desc limit 1",
-            nativeQuery = true)
-    List<Object[]> gettossdecisions();
 
     @Query(value = "select count(*) from match_info where winning_team=:team",
             nativeQuery = true)
@@ -46,6 +34,4 @@ public interface MatchRepository extends CrudRepository<Match, Integer> {
     @Query(value = "select * from match_info where (team1=:teamName or team2=:teamName) and Year(date) =:year",
             nativeQuery = true)
     List<Match> getAllMatches(@Param("teamName") String teamName, @Param("year") int year);
-
-//    List<Match> findByTeam1(String team);
 }
