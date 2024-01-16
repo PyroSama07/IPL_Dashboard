@@ -43,5 +43,9 @@ public interface MatchRepository extends CrudRepository<Match, Integer> {
             nativeQuery = true)
     List<String> getallteams();
 
+    @Query(value = "select * from match_info where (team1=:teamName or team2=:teamName) and Year(date) =:year",
+            nativeQuery = true)
+    List<Match> getAllMatches(@Param("teamName") String teamName, @Param("year") int year);
+
 //    List<Match> findByTeam1(String team);
 }

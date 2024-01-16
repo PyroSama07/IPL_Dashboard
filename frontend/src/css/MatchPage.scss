@@ -1,0 +1,30 @@
+.MatchPage{
+    display: grid;
+    grid-template-columns: 1fr 5fr;
+    grid-column-gap: 20px;
+
+    .year-selector{
+        justify-self: end;
+        padding: 20px;
+    }
+
+    .page-heading{
+        margin: 20px auto;
+    }
+}
+
+.NotFound{
+    display: grid;
+    grid-template-columns: 1fr 5fr;
+    grid-column-gap: 20px;
+
+    .year-selector{
+        justify-self: end;
+        padding: 20px;
+    }
+    
+    .not-found{
+        justify-self: center;
+        align-content: center;
+    }
+}

@@ -13,6 +13,7 @@ import java.util.*;
 @RestController
 @RequestMapping("/dashboard")
 @Slf4j
+@CrossOrigin
 public class DashBoardController {
 
     @Autowired
@@ -35,12 +36,18 @@ public class DashBoardController {
         return matchRepository.getseasonwinner(season.get("season"));
     }
 
-    @GetMapping("/teamdetails")
+    @GetMapping("/teamDetails")
     public Team getTeamDetails(@RequestParam String teamName){
         List<Match> matches = matchRepository.getlast4teammatch(teamName);
         Team team = teamRepository.getTeamDetails(teamName);
         team.setLatest_matches(matches);
         return team;
+    }
+
+    @GetMapping("/matchDetails")
+    public List<Match> getMatchDetails(@RequestParam String teamName, @RequestParam int year){
+//        log.info(startDate+endDate);
+        return matchRepository.getAllMatches(teamName,year);
     }
 
     @GetMapping("/tosswinners")
