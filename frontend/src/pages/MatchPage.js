@@ -14,12 +14,12 @@ export const MatchPage = () =>{
     const year = searchParams.get('year');
     useEffect(
         () => {
-           const fetchTeamData = async () =>{
+            const fetchTeamData = async () =>{
             const response = await fetch(`http://localhost:8080/dashboard/matchDetails?teamName=${teamName}&year=${year}`)
 //            const response = await fetch(`http://localhost:8080/dashboard/matchDetails?teamName=Delhi Capitals&year=2008`)
             const data = await response.json();
             setMatch(data);
-            console.log(match);
+            // console.log(match);
            };
         fetchTeamData();
         },[teamName,year]
@@ -47,7 +47,7 @@ export const MatchPage = () =>{
             <h1 className="page-heading"><Link to={{pathname: '/dashboard/teamDetails',
                                           search: `?teamName=${teamName}`}}>
                                           {teamName}</Link> matches in {year}</h1>
-                {match.slice(0).map(latest_match => <MatchDetailComponent match={latest_match} teamName = {teamName}/>)}
+                {match.map(latest_match => <MatchDetailComponent key={latest_match.id} match={latest_match} teamName = {teamName}/>)}
             </div>
         </div>
     );

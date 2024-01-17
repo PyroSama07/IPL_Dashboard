@@ -31,7 +31,13 @@ public class DashBoardController {
 
     @GetMapping("/matchDetails")
     public List<Match> getMatchDetails(@RequestParam String teamName, @RequestParam int year){
+//        log.info(startDate+endDate);
         return matchRepository.getAllMatches(teamName,year);
+    }
+
+    @GetMapping("/allTeams")
+    public List<String> getAllTeamName(){
+        return matchRepository.getallteams();
     }
 
 }

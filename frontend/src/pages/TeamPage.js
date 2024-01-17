@@ -14,7 +14,7 @@ export const TeamPage = () =>{
     const teamName = searchParams.get('teamName');
     useEffect(
         () => {
-           const fetchTeamData = async () =>{
+            const fetchTeamData = async () =>{
             const response = await fetch(`http://localhost:8080/dashboard/teamDetails?teamName=${teamName}`)
             // const response = await fetch(`http://localhost:8080/dashboard/teamDetails?teamName=Delhi Capitals`)
             const data = await response.json();
@@ -50,7 +50,9 @@ export const TeamPage = () =>{
                 <h2>Latest Match</h2>
                 <MatchDetailComponent match={team.latest_matches[0]} teamName = {teamName} />
             </div>
-            {team.latest_matches.slice(1).map(latest_match => <MatchSmallComponent match={latest_match} teamName = {teamName}/>)}
+            {team.latest_matches.slice(1).map(latest_match => 
+                                <MatchSmallComponent key={latest_match.id} 
+                                match={latest_match} teamName = {teamName}/>)}
             <div className='more-link'>
                 <p><Link to={{pathname: '/dashboard/matchDetails',
                                                 search: `?teamName=${teamName}&year=2022`}}>

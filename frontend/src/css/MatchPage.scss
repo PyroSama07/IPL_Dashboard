@@ -5,6 +5,7 @@
 
     .year-selector{
         justify-self: end;
+        text-align: right;
         padding: 20px;
     }
 
@@ -19,6 +20,7 @@
     grid-column-gap: 20px;
 
     .year-selector{
+        text-align: left;
         justify-self: end;
         padding: 20px;
     }

@@ -1,7 +1,37 @@
+import {React, useEffect, useState} from 'react';
+import { TeamHome } from '../components/TeamHome';
+
+import '../css/HomePage.scss';
+
 export const HomePage = () =>{
-    return (
+
+    const [teams,setTeams] = useState({});
+    let i = 0;
+    useEffect (
+        () =>{
+            const fetchTeamNames = async () => {
+                const response = await fetch(`http://localhost:8080/dashboard/allTeams`);
+                const data = await response.json();
+                setTeams(data);
+                // console.log(data);
+            };
+            fetchTeamNames();
+        },[]
+    );
+
+    if (!teams[0]) return (
         <div>
-            <h1> HOME PAGE </h1>
+            not
+        </div>
+    )
+
+    return (
+        <div className="HomePage">
+            <div className='title'>
+                <h1> IPL DashBoard </h1>
+                <h2>by Rochak Ranjan</h2>
+            </div>
+            {teams.map(team => <TeamHome key={i++} teamName = {team} />)}
         </div>
     );
 }
