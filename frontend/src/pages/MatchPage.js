@@ -15,7 +15,7 @@ export const MatchPage = () =>{
     useEffect(
         () => {
             const fetchTeamData = async () =>{
-            const response = await fetch(`http://localhost:8080/dashboard/matchDetails?teamName=${teamName}&year=${year}`)
+            const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/dashboard/matchDetails?teamName=${teamName}&year=${year}`)
 //            const response = await fetch(`http://localhost:8080/dashboard/matchDetails?teamName=Delhi Capitals&year=2008`)
             const data = await response.json();
             setMatch(data);
