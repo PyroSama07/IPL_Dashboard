@@ -35,9 +35,6 @@ build/
 ###properties to hide pass/username
 src/main/resources/application.properties
 
-###Data Set###
-IPL_Matches_2008_2022.csv
-
 ###Node packages###
 node_modules/
 
